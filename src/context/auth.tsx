@@ -1,11 +1,11 @@
 import React, {createContext, useState, useContext, useEffect} from 'react';
 import {ToastAndroid} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {User} from '@types';
+import {AuthType, User} from 'types';
 
 interface AuthContextData {
   user: User | null;
-  signIn(email: string, password: string): Promise<void>;
+  signIn(auth: AuthType): Promise<void>;
   signOut(): Promise<void>;
   isLoading: boolean;
   isAuthenticated: boolean;
@@ -35,7 +35,7 @@ const AuthProvider: React.FC = ({children}) => {
 
     loadStorageData();
   }, []);
-  async function signIn(email = 'everton8cosmo@gmail.com') {
+  async function signIn({email = 'everton8cosmo@gmail.com'}) {
     const response: PromiseResponse = await new Promise((resolve) => {
       setTimeout(() => {
         resolve({

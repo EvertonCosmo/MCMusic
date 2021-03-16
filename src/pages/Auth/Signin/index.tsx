@@ -1,8 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useAuth} from '../../../context/auth';
-
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {Creators as sessionCreators} from '../../../store/ducks/session';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -25,16 +24,21 @@ const styles = StyleSheet.create({
   },
 });
 const SignIn = () => {
-  const {signIn} = useAuth(); // use redux
+  //const {signIn} = useAuth(); // use redux
+  const dispatch = useDispatch();
+
+  function signIn() {
+    dispatch(
+      sessionCreators.login({email: 'everton@gmail.com', password: '123'}),
+    );
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.inside}>
         <Text>SignIn Page</Text>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => signIn('everton@gmail.com', '123')}>
+        <TouchableOpacity style={styles.button} onPress={signIn}>
           <Text> Login </Text>
         </TouchableOpacity>
       </View>

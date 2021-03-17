@@ -1,27 +1,11 @@
 import React from 'react';
-import {Text, View, StyleSheet, TextInput} from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  inputSearch: {
-    height: 40,
-    borderColor: '#fff',
-    borderWidth: 1
-  },
-
-});
+import {Text, View} from 'react-native';
 
 const Artist = () => {
   return (
-    <View style={styles.container}>
+    <View>
       <View>
-        <TextInput
-        style={styles.inputSearch}
-        defaultValue="You can type in me"
-      />
+        <Text> Artist Page</Text>
       </View>
     </View>
   );

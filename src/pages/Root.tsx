@@ -1,24 +1,44 @@
 import React from 'react';
-
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import Icons from 'react-native-vector-icons/Feather';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icons from 'react-native-vector-icons/Entypo';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import IoniconsIcons from 'react-native-vector-icons/Ionicons';
 import Search from './Search';
 import {MainStack} from './Main';
 import Libray from './Main/Library';
 
-const Bottom = createMaterialBottomTabNavigator();
+const Bottom = createBottomTabNavigator();
 
 const BottomNavigator = () => {
   return (
-    <Bottom.Navigator>
+    <Bottom.Navigator
+      tabBarOptions={{
+        style: {
+          backgroundColor: '#282828',
+          borderTopWidth: 0,
+          height: 54,
+        },
+        keyboardHidesTabBar: false,
+        adaptive: true,
+
+        tabStyle: {paddingBottom: 8},
+        activeTintColor: '#fff',
+        inactiveTintColor: '#b3b3b3',
+      }}>
       <Bottom.Screen
         name="main-navigator"
         component={MainStack}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: () => {
-            return <Icons name={'home'} size={24} color={'#333'} />;
+          tabBarIcon: ({color}) => {
+            return (
+              <Icons
+                style={{marginBottom: -3}}
+                name={'home'}
+                size={24}
+                color={color}
+              />
+            );
           },
         }}
       />
@@ -27,8 +47,15 @@ const BottomNavigator = () => {
         component={Search}
         options={{
           tabBarLabel: 'Search',
-          tabBarIcon: () => {
-            return <Icons name={'search'} size={24} color={'#333'} />;
+          tabBarIcon: ({color}) => {
+            return (
+              <EvilIcons
+                style={{marginBottom: -3}}
+                name={'search'}
+                size={24}
+                color={color}
+              />
+            );
           },
         }}
       />
@@ -37,9 +64,14 @@ const BottomNavigator = () => {
         component={Libray}
         options={{
           tabBarLabel: 'Library',
-          tabBarIcon: () => {
+          tabBarIcon: ({color}) => {
             return (
-              <Ionicons name={'library-outline'} size={24} color={'#333'} />
+              <IoniconsIcons
+                style={{marginBottom: -3}}
+                name={'library'}
+                size={24}
+                color={color}
+              />
             );
           },
         }}

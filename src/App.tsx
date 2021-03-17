@@ -1,16 +1,22 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
+import {enableScreens} from 'react-native-screens';
 import {Provider as PaperProvider} from 'react-native-paper';
+
 import {RootNavigator} from './RootNavigator';
 import {PersistGate} from 'redux-persist/integration/react';
-import {AuthProvider} from './context/auth';
+
 import {Provider} from 'react-redux';
 import {store, persistor} from './store';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import {MediaProvider} from './context/media';
 
+enableScreens();
+EStyleSheet.build();
 const App = () => {
   return (
     <Provider store={store}>
-      <AuthProvider>
+      <MediaProvider>
         <NavigationContainer>
           <PaperProvider>
             <PersistGate persistor={persistor} loading={null}>
@@ -18,7 +24,7 @@ const App = () => {
             </PersistGate>
           </PaperProvider>
         </NavigationContainer>
-      </AuthProvider>
+      </MediaProvider>
     </Provider>
   );
 };

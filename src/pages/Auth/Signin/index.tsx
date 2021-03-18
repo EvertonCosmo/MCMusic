@@ -36,7 +36,7 @@ const SignIn = () => {
   return (
     <View style={styles.container}>
       <View style={styles.inside}>
-        <Text>SignIn Page</Text>
+        <Text style={{color: 'white'}}>SignIn Page</Text>
 
         <TouchableOpacity style={styles.button} onPress={signIn}>
           <Text> Login </Text>

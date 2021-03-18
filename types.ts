@@ -24,3 +24,12 @@ export interface AlbumProps {
   name?: string;
   numberOfSongs?: number;
 }
+export interface SongProps {
+  artist?: string;
+  album?: string;
+  cover: string;
+  id: string;
+  path: string;
+  title: string;
+  type?: string;
+}

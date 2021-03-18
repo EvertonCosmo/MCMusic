@@ -5,13 +5,16 @@ import {PermissionsAndroid} from 'react-native';
 interface MediaContextData {
   songs: any;
   albums: any;
+  songsByAlbum: any;
   getOfflineSongs(): void;
   getOfflineAlbums(): void;
+  getOfflineSongsByAlbum(album: string): void;
 }
 const MediaContext = createContext<MediaContextData>({} as MediaContextData);
 
 const MediaProvider: React.FC = ({children}) => {
   const [songs, setSongs] = useState([]);
+  const [songsByAlbum, setSongsByAlbum] = useState([]);
   const [albums, setAlbums] = useState([]);
 
   async function requestStoragePermission() {
@@ -69,9 +72,28 @@ const MediaProvider: React.FC = ({children}) => {
       });
   }
 
+  function getOfflineSongsByAlbum(album: string) {
+    console.log('get songs by album');
+
+    RNAndroidAudioStore.getSongs({album})
+      .then((data: any) => {
+        console.log({songs: data});
+        setSongsByAlbum(data);
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
+  }
   return (
     <MediaContext.Provider
-      value={{albums, songs, getOfflineAlbums, getOfflineSongs}}>
+      value={{
+        albums,
+        songs,
+        getOfflineAlbums,
+        getOfflineSongs,
+        getOfflineSongsByAlbum,
+        songsByAlbum,
+      }}>
       {children}
     </MediaContext.Provider>
   );
@@ -82,7 +104,21 @@ function useMedia() {
   if (!context) {
     throw new Error('useContext must be used within a Provider');
   }
-  const {albums, songs, getOfflineAlbums, getOfflineSongs} = context;
-  return {albums, songs, getOfflineSongs, getOfflineAlbums};
+  const {
+    albums,
+    songs,
+    songsByAlbum,
+    getOfflineAlbums,
+    getOfflineSongs,
+    getOfflineSongsByAlbum,
+  } = context;
+  return {
+    albums,
+    songs,
+    songsByAlbum,
+    getOfflineSongs,
+    getOfflineAlbums,
+    getOfflineSongsByAlbum,
+  };
 }
 export {MediaProvider, useMedia};

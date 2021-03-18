@@ -11,7 +11,12 @@ import {useScrollToTop} from '@react-navigation/native';
 const styles = StyleSheet.create({
   icon: {
     borderWidth: 1,
+
     padding: 10,
+    borderColor: '#a3a3a3',
+  },
+  list: {
+    alignItems: 'flex-start',
   },
 });
 interface AlbumListProps {
@@ -38,6 +43,7 @@ const AlbumList = ({albums, onRefresh}: AlbumListProps) => {
         renderItem={({item}: {item: AlbumProps}) => (
           <List.Item
             title={item.album}
+            titleStyle={{fontWeight: 'bold'}}
             left={(props) =>
               item.cover === 'file://null' ? (
                 <MusicCover styles={styles.icon} size={60} />
@@ -50,7 +56,7 @@ const AlbumList = ({albums, onRefresh}: AlbumListProps) => {
               )
             }
             description={`${item.numberOfSongs} songs`}
-            onPress={() => navigation.navigate('album-songs')}
+            onPress={() => navigation.navigate('album-songs', {album: item})}
           />
         )}
         refreshControl={

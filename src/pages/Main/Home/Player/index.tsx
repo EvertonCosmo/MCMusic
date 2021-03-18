@@ -19,9 +19,9 @@ const Player = () => {
     <View style={styles.container}>
       <View>
         <Text> Player Page</Text>
-        <View style={styles.progress}>
+        {/* <View style={styles.progress}>
           <ProgressBar />
-        </View>
+        </View> */}
       </View>
       <Divider />
     </View>

@@ -15,3 +15,12 @@ export interface BaseAction {
   type: string;
   payload?: any;
 }
+export interface AlbumProps {
+  album?: string;
+  artist?: string;
+  author?: string;
+  cover?: string;
+  id: string;
+  name?: string;
+  numberOfSongs?: number;
+}

@@ -5,7 +5,7 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import IoniconsIcons from 'react-native-vector-icons/Ionicons';
 import Search from './Search';
 import {MainStack} from './Main';
-import Libray from './Main/Library';
+import {LibraryStack} from './Library';
 
 const Bottom = createBottomTabNavigator();
 
@@ -61,7 +61,7 @@ const BottomNavigator = () => {
       />
       <Bottom.Screen
         name="library-navigator"
-        component={Libray}
+        component={LibraryStack}
         options={{
           tabBarLabel: 'Library',
           tabBarIcon: ({color}) => {

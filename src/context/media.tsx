@@ -1,4 +1,6 @@
 import React, {useEffect, createContext, useState, useContext} from 'react';
+import RNAndroidAudioStore from 'react-native-get-music-files';
+
 import {PermissionsAndroid} from 'react-native';
 interface MediaContextData {
   songs: any;
@@ -42,11 +44,29 @@ const MediaProvider: React.FC = ({children}) => {
     requestStoragePermission();
   }, []);
 
+  // Javascript
   function getOfflineSongs() {
+    console.log('get songs');
+    RNAndroidAudioStore.getAll({})
+      .then((media: any) => {
+        console.log({media: media});
+        setSongs(media);
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
     return true;
   }
   function getOfflineAlbums() {
-    return true;
+    console.log('get albums');
+    RNAndroidAudioStore.getAlbums({})
+      .then((data: any) => {
+        console.log({albums: data});
+        setAlbums(data);
+      })
+      .catch((err: any) => {
+        console.error(err);
+      });
   }
 
   return (

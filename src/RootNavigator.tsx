@@ -19,8 +19,8 @@ const RootNavigator = () => {
       <StatusBar
         animated
         showHideTransition="fade"
-        translucent={true}
         barStyle={'light-content'}
+        backgroundColor={'#141414'}
       />
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {isAuthenticated ? (

@@ -1,14 +1,15 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {HomeStack} from './Home';
+import Album from './Album';
 
 const Stack = createStackNavigator();
 
-const MainStack = () => {
+const LibraryStack = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name={'home'} component={HomeStack} />
+      <Stack.Screen name={'album'} component={Album} />
+      {/* <Stack.Screen name="album-songs" component={null} /> */}
     </Stack.Navigator>
   );
 };
-export {MainStack};
+export {LibraryStack};

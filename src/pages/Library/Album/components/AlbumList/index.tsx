@@ -43,7 +43,8 @@ const AlbumList = ({albums, onRefresh}: AlbumListProps) => {
         renderItem={({item}: {item: AlbumProps}) => (
           <List.Item
             title={item.album}
-            titleStyle={{fontWeight: 'bold'}}
+            titleStyle={{fontWeight: 'bold', color: 'white'}}
+            descriptionStyle={{color: 'white'}}
             left={(props) =>
               item.cover === 'file://null' ? (
                 <MusicCover styles={styles.icon} size={60} />

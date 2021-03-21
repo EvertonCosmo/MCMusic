@@ -31,5 +31,4 @@ export interface SongProps {
   id: string;
   path: string;
   title: string;
-  type?: string;
 }

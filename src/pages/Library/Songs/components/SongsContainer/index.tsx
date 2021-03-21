@@ -29,6 +29,7 @@ const SongsContainer = ({songs}: SongsContainerProps) => {
         renderItem={({item}: {item: SongProps}) => (
           <List.Item
             title={item.title}
+            titleStyle={{color: 'white'}}
             left={(props) => <MusicCover styles={styles.icon} size={30} />}
             right={(props) => (
               <MaterialCommunityIcons

@@ -7,7 +7,7 @@ export default (reducers: Reducer) => {
     {
       key: 'root',
       storage: AsyncStorage,
-      whitelist: ['session'],
+      whitelist: ['session', 'media'],
     },
     reducers,
   );

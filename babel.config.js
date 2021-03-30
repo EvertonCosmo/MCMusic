@@ -9,7 +9,7 @@ module.exports = {
         alias: {
           '@app/components': './src/components/index.ts',
           '@app/hooks': './src/context',
-          '@app/utils': './src/utils/index.ts',
+          '@app/utils': './src/utils',
         },
       },
     ],

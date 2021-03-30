@@ -10,6 +10,8 @@ import {Provider} from 'react-redux';
 import {store, persistor} from './store';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {MediaProvider} from './context/media';
+import {MiniPlayer} from './components';
+
 const MyTheme = {
   ...DefaultTheme,
   dark: true,
@@ -32,6 +34,7 @@ const App = () => {
           <PaperProvider>
             <PersistGate persistor={persistor} loading={null}>
               <RootNavigator />
+              {/* <MiniPlayer /> */}
             </PersistGate>
           </PaperProvider>
         </NavigationContainer>

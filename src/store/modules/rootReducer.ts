@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import {session, media} from '../ducks/';
+import {session, player} from '../ducks/';
 export const rootReducer = combineReducers({
   session,
-  media,
+  player,
 });
 
 export type RootReducerType = ReturnType<typeof rootReducer>;

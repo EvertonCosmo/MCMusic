@@ -225,36 +225,11 @@ const Artist = () => {
                 <Text style={styles.titlePopular}>Popular</Text>
               </View>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <CardSong
-                  cover={
-                    'https://yt3.ggpht.com/ytc/AAUvwnjxGJLyDfVwbTvsI7xy19hII5bbpAjGogGPh85sLg=s900-c-k-c0x00ffffff-no-rj'
-                  }
-                  name="Summer Days"
-                />
-                <CardSong
-                  cover={
-                    'https://yt3.ggpht.com/ytc/AAUvwnjxGJLyDfVwbTvsI7xy19hII5bbpAjGogGPh85sLg=s900-c-k-c0x00ffffff-no-rj'
-                  }
-                  name="Summer Days"
-                />
-                <CardSong
-                  cover={
-                    'https://yt3.ggpht.com/ytc/AAUvwnjxGJLyDfVwbTvsI7xy19hII5bbpAjGogGPh85sLg=s900-c-k-c0x00ffffff-no-rj'
-                  }
-                  name="Summer Days"
-                />
-                <CardSong
-                  cover={
-                    'https://yt3.ggpht.com/ytc/AAUvwnjxGJLyDfVwbTvsI7xy19hII5bbpAjGogGPh85sLg=s900-c-k-c0x00ffffff-no-rj'
-                  }
-                  name="Summer Days"
-                />
-                <CardSong
-                  cover={
-                    'https://yt3.ggpht.com/ytc/AAUvwnjxGJLyDfVwbTvsI7xy19hII5bbpAjGogGPh85sLg=s900-c-k-c0x00ffffff-no-rj'
-                  }
-                  name="Summer Days"
-                />
+                <CardSong name="Summer Days" />
+                <CardSong name="Summer Days" />
+                <CardSong name="Summer Days" />
+                <CardSong name="Summer Days" />
+                <CardSong name="Summer Days" />
               </ScrollView>
               <View style={styles.album}>
                 <Text style={styles.titleAlbum}>Albums</Text>

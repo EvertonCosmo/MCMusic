@@ -1,9 +1,10 @@
-import {stringToType} from '@app/utils';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import {PermissionsAndroid} from 'react-native';
 import RNAndroidAudioStore from 'react-native-get-music-files';
 import {AlbumProps, SongProps} from 'types';
+import {getStorage, setStorage} from '@app/utils/storage';
+import {Creators as PlayerCreators} from '../store/ducks/player';
+import {useDispatch} from 'react-redux';
 interface MediaContextData {
   songs: any;
   albums: any;
@@ -15,6 +16,7 @@ interface MediaContextData {
 const MediaContext = createContext<MediaContextData>({} as MediaContextData);
 
 const MediaProvider: React.FC = ({children}) => {
+  const dispatch = useDispatch();
   const [songs, setSongs] = useState<Array<SongProps>>([] as SongProps[]);
   const [songsByAlbum, setSongsByAlbum] = useState<Array<SongProps>>(
     [] as SongProps[],
@@ -47,39 +49,14 @@ const MediaProvider: React.FC = ({children}) => {
     }
   }
 
-  async function getStorage<T>(
-    key: string,
-    callback?: React.SetStateAction<T | any>,
-  ): Promise<T> {
-    const response = await _getStorageAndSave<T>(key).then((result) => {
-      if (callback) {
-        callback(result);
-      }
-      return result;
-    });
-
-    return response;
-  }
-  async function _getStorageAndSave<T>(key: string): Promise<T> {
-    const data = await AsyncStorage.getItem(key);
-
-    const object: T = stringToType<T>(data as string);
-
-    return object;
-  }
-
-  async function setStorage(
-    data: Array<AlbumProps> | Array<SongProps>,
-    key: string,
-  ) {
-    await AsyncStorage.setItem(key, JSON.stringify(data));
-  }
-
   useEffect(() => {
+    //Setup player
+    dispatch(PlayerCreators.setupPlayer());
+
     const storage = async () => {
       let songsStorage = await getStorage<SongProps[]>('@songs');
       let albumsStorage = await getStorage<AlbumProps[]>('@albums');
-      if (songsStorage.length && albumsStorage.length) {
+      if (songsStorage?.length && albumsStorage?.length) {
         console.log('get from storage');
         Promise.all([
           getStorage<SongProps[]>('@songs', setSongs),
@@ -94,11 +71,6 @@ const MediaProvider: React.FC = ({children}) => {
     requestStoragePermission();
   }, []);
 
-  useEffect(() => {
-    console.log('songs has changed');
-    console.log({songs: songs[0]});
-  }, [songs]);
-
   // Javascript
   function getOfflineSongs() {
     console.log('get songs');
@@ -112,7 +84,6 @@ const MediaProvider: React.FC = ({children}) => {
       .catch((err: any) => {
         console.error(err);
       });
-    return true;
   }
   function getOfflineAlbums() {
     console.log('get albums');

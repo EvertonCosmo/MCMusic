@@ -7,6 +7,7 @@ import {RootReducerType} from './store/modules/rootReducer';
 
 import {StatusBar} from 'react-native';
 import Player from './pages/Main/Home/Player';
+import {MiniPlayer} from './components';
 
 const Stack = createStackNavigator();
 

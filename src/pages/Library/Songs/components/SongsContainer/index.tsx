@@ -1,11 +1,13 @@
 import React from 'react';
 import {SongProps} from 'types';
-import {FlatList, StyleSheet} from 'react-native';
+import {Animated, StyleSheet} from 'react-native';
 import {Container, Title} from './styles';
 import {MusicCover} from '@app/components';
-
+import {Creators as playerCreators} from '../../../../../store/ducks/player';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {List} from 'react-native-paper';
+import {useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/core';
 
 const styles = StyleSheet.create({
   icon: {
@@ -21,10 +23,12 @@ interface SongsContainerProps {
   songs: Array<any>;
 }
 const SongsContainer = ({songs}: SongsContainerProps) => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   return (
     <Container>
       <Title> Tracks</Title>
-      <FlatList
+      <Animated.FlatList
         data={songs}
         renderItem={({item}: {item: SongProps}) => (
           <List.Item
@@ -40,7 +44,10 @@ const SongsContainer = ({songs}: SongsContainerProps) => {
               />
             )}
             description={`${item.artist} `}
-            // onPress={() => navigation.navigate('album-songs', {album: item})}
+            onPress={() => {
+              dispatch(playerCreators.play(item));
+              //navigation.navigate('player', {track: item});
+            }}
           />
         )}
       />

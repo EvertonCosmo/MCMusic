@@ -5,10 +5,11 @@ import createStore from './createStore';
 import {rootReducer} from './modules/rootReducer';
 import rootSaga from './modules/rootSaga';
 import persistReducers from './persistReducers';
+import thunk from 'redux-thunk';
 
 const sagaMiddleware = createSagaMiddleware({});
 
-const middlewares = [sagaMiddleware];
+const middlewares = [sagaMiddleware, thunk];
 
 const store: Store<any> = createStore(
   persistReducers(rootReducer),

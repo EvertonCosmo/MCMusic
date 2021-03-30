@@ -15,6 +15,7 @@ const Songs = () => {
   const album = params?.album;
   console.log(params);
   const {getOfflineSongsByAlbum, songsByAlbum} = useMedia();
+
   useEffect(() => {
     getOfflineSongsByAlbum(album?.name || album?.album);
   }, []);

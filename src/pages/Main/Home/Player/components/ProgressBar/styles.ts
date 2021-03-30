@@ -9,6 +9,6 @@ export const Container = styled(View)`
   justify-content: center;
 `;
 export const ProgressMusic = styled(Progress)`
-  height: 20;
-  width: '100%';
+  height: 20px;
+  width: 100%;
 `;

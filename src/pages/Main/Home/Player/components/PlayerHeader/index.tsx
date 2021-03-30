@@ -1,13 +1,11 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const Libray = () => {
+const PlayerHeader = () => {
   return (
     <View>
-      <View>
-        <Text> Library Page </Text>
-      </View>
+      <Text> Player Header</Text>
     </View>
   );
 };
-export default Libray;
+export default PlayerHeader;

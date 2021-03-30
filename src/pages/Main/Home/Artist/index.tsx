@@ -165,8 +165,11 @@ const styles = EStyleSheet.create({
     backgroundColor: 'gray',
   },
 });
-
-const Artist = () => {
+interface ArtistProps {
+  name: string;
+  description: string;
+}
+const Artist = ({name, description}: ArtistProps) => {
   const navigation = useNavigation();
 
   function backNavigation() {
